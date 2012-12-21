@@ -39,7 +39,7 @@ public class CustomViewAbove extends ViewGroup {
 
 	private static final boolean USE_CACHE = false;
 
-	private static final int MAX_SETTLE_DURATION = 600; // ms
+	private static final int MAX_SETTLE_DURATION = 300; // ms
 	private static final int MIN_DISTANCE_FOR_FLING = 25; // dips
 
 	private static final Interpolator sInterpolator = new Interpolator() {
@@ -547,6 +547,13 @@ public class CustomViewAbove extends ViewGroup {
 		boolean needPopulate = mScrolling;
 		if (needPopulate) {
 			// Done with scroll, no longer want to cache view drawing.
+		  if (isMenuOpen()) {
+		    if (mOpenedListener != null)
+		      mOpenedListener.onOpened();
+		  } else {
+		    if (mClosedListener != null)
+		      mClosedListener.onClosed();
+		  }
 			setScrollingCacheEnabled(false);
 			mScroller.abortAnimation();
 			int oldX = getScrollX();
@@ -555,13 +562,6 @@ public class CustomViewAbove extends ViewGroup {
 			int y = mScroller.getCurrY();
 			if (oldX != x || oldY != y) {
 				scrollTo(x, y);
-			}
-			if (isMenuOpen()) {
-				if (mOpenedListener != null)
-					mOpenedListener.onOpened();
-			} else {
-				if (mClosedListener != null)
-					mClosedListener.onClosed();
 			}
 		}
 		mScrolling = false;
