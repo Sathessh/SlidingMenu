@@ -17,7 +17,7 @@ public class CustomViewBehind extends ViewGroup {
 
 	private static final String TAG = "CustomViewBehind";
 
-	private static final int MARGIN_THRESHOLD = 20; // dips
+	private static final int MARGIN_THRESHOLD = 50; // dips
 
 	private CustomViewAbove mViewAbove;
 
