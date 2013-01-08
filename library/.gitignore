@@ -1,0 +1,12 @@
+local.properties
+.settings
+bin
+gen
+
+#IntelliJ IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+classes
+gen-external-apklibs
