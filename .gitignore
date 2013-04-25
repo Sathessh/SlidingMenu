@@ -14,3 +14,9 @@ gen
 .metadata/
 .metadata
 *.project
+
+#IntelliJ IDEA
+.idea
+*.iml
+*.ipr
+*.iws
