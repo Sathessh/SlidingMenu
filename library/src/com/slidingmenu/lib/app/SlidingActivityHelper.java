@@ -63,7 +63,7 @@ public class SlidingActivityHelper {
 		TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 		int background = a.getResourceId(0, 0);
 		a.recycle();
-
+    View currentFocus = mActivity.getCurrentFocus();
 		if (mEnableSlide) {
 			// move everything into the SlidingMenu
 			ViewGroup decor = (ViewGroup) mActivity.getWindow().getDecorView();
@@ -86,6 +86,9 @@ public class SlidingActivityHelper {
 			mSlidingMenu.setContent(mViewAbove);
 			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		}
+    if (currentFocus != null) {
+      currentFocus.requestFocus();
+    }
 		this.showContent();
 	}
 
