@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
 
 import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
@@ -87,7 +88,16 @@ public class SlidingActivityHelper {
 			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		}
     if (currentFocus != null) {
-      currentFocus.requestFocus();
+      if (currentFocus instanceof EditText) {
+        EditText editText = (EditText) currentFocus;
+        int selectionStart = editText.getSelectionStart();
+        int selectionEnd = editText.getSelectionEnd();
+        editText.requestFocus();
+        editText.setSelection(selectionStart);
+        editText.setSelection(selectionEnd);
+      } else {
+        currentFocus.requestFocus();
+      }
     }
 		this.showContent();
 	}
